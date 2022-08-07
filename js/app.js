@@ -12,9 +12,8 @@ const loadBooks = async (searchText) => {
   console.log(url);
   const res = await fetch(url);
   const data = await res.json();
-  // raw data
-  console.log(data);
-  //   console.log(Array.isArray(data.docs));
+  const bookDetailsDiv = document.getElementById("book-details");
+  bookDetailsDiv.textContent = "";
   const resultNumber = document.getElementById("result-found");
 
   if (data.numFound !== 0) {
@@ -24,21 +23,17 @@ const loadBooks = async (searchText) => {
   }
 
   // data.doc is an array;
+
   const information = data.docs;
   console.log(information);
-  information.forEach((info, i) => {
-    bookDetail(info, i);
+  information.forEach((info) => {
+    bookDetail(info);
   });
 };
 
 /* Book Detail */
 
-const bookDetail = (info, i) => {
-  /*   if (info?.author_name?.length !== undefined) {
-    console.log(info?.author_name[0]);
-  } */
-  console.log(info.publisher, i);
-
+const bookDetail = (info) => {
   function authorName(info) {
     if (info.author_name?.length > 0) {
       return info?.author_name[0].slice(0, 20);
@@ -59,31 +54,33 @@ const bookDetail = (info, i) => {
     if (info.cover_i !== undefined) {
       return info.cover_i;
     } else {
+      // this id will return 'no image available' on the cover;
       return 11525585;
     }
   };
-  //   console.log(bookCover(info));
 
   const bookDetailsDiv = document.getElementById("book-details");
+
   const div = document.createElement("div");
+
   const bookTitle = info.title.slice(0, 40);
 
   div.innerHTML = `
     <div class="col">
         <div class="card h-100">
-            <img style="height:260px;" src="https://covers.openlibrary.org/b/id/${bookCover(
+            <img style="height:310px;" src="https://covers.openlibrary.org/b/id/${bookCover(
               info
             )}-M.jpg" class="card-img-top " alt="..." />
             <div class="card-body">
                 <h5 class="card-title">${bookTitle}</h5>
                 <h6 class="card-text">
-                  <strong> Author: '${authorName(info)}' </strong>
+                  <strong>Author:</strong> '${authorName(info)}' 
                 </h6>
                 <h6 class="card-text">
-                    Publisher: ${publisherName(info)}
+                <strong>Publisher:</strong> ${publisherName(info)}
                 </h6>
                 <h6 class="card-text">
-                    First Publish Year: ${info.first_publish_year}
+                <strong>First Publish Year:</strong> ${info.first_publish_year}
                 </h6>
                 
             </div>
