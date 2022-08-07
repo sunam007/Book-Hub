@@ -1,0 +1,7 @@
+body {
+  background: url(images/background.jpg) no-repeat center fixed;
+  background-size: cover;
+}
+.w-15 {
+  width: 15%;
+}
