@@ -13,7 +13,7 @@
     />
     <style>
       body {
-        background: url(images/background2.jpg) no-repeat center fixed;
+        background: url(images/background.jpg) no-repeat center fixed;
         background-size: cover;
       }
       .w-15 {
@@ -23,30 +23,39 @@
   </head>
   <body>
     <header>
-      <section class="container my-3">
+      <!-----------Main Header Section---------
+     ------------------------------------------>
+
+      <section class="container my-2">
         <div class="d-flex justify-content-center align-items-center">
           <img class="w-15" src="images/logo.png" />
           <h1 class="text-center mt-2 text-white">Book-Hub</h1>
         </div>
       </section>
     </header>
+
     <main>
-      <section class="container mx-auto mb-3">
-        <div class="input-group mb-3 mx-auto w-50">
+      <!---------Search Field----------------- 
+        ------------------------------------->
+
+      <section class="container mx-auto">
+        <div class="input-group mb-4 mx-auto w-50">
           <input
             type="text"
-            class="form-control"
-            placeholder="search your reference"
+            class="form-control p-2"
+            placeholder="Book Search"
           />
           <button
             class="btn btn-secondary btn-outline-secondary text-light"
             type="button"
             id="button-addon2"
           >
-            Button
+            Search
           </button>
         </div>
-        <h3 class="text-center text-muted">Knowledge as human right</h3>
+        <blockquote class="fs-4 text-center text-white-50 my-4">
+          Knowledge as human right
+        </blockquote>
       </section>
     </main>
     <footer></footer>
