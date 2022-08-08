@@ -4,7 +4,6 @@ const toggleSpinner = (displayStyle) => {
 };
 const toggleSearchResult = (displayStyle) => {
   document.getElementById("book-details").style.display = displayStyle;
-  document.getElementById("result-found").style.display = displayStyle;
 };
 const toggleSearchNumber = (displayStyle) => {
   document.getElementById("result-found").style.display = displayStyle;
@@ -36,13 +35,13 @@ const loadBooks = async (searchText) => {
   const res = await fetch(url);
   const data = await res.json();
 
-  // Toggling spinner off
-  toggleSpinner("none");
-
   const bookDetailsDiv = document.getElementById("book-details");
 
   // Clearing previous search data;
   bookDetailsDiv.textContent = "";
+
+  //Search Result Number hidden while search starts
+  toggleSearchNumber("block");
 
   const resultNumber = document.getElementById("result-found");
 
@@ -52,10 +51,14 @@ const loadBooks = async (searchText) => {
     resultNumber.innerText = `No Result Found.`;
   }
 
-  // data.doc is an array;
+  // Toggling spinner off
+  toggleSpinner("none");
 
+  // data.doc is an array;
   const information = data.docs;
+
   console.log(information);
+
   information.forEach((info) => {
     bookDetail(info);
   });
@@ -119,8 +122,7 @@ const bookDetail = (info) => {
   `;
 
   bookDetailsDiv.appendChild(div);
+
   // Display Search Result
   toggleSearchResult("flex");
-  //Search Result Number hidden while search starts
-  toggleSearchNumber("block");
 };
