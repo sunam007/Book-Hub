@@ -4,6 +4,10 @@ const toggleSpinner = (displayStyle) => {
 };
 const toggleSearchResult = (displayStyle) => {
   document.getElementById("book-details").style.display = displayStyle;
+  document.getElementById("result-found").style.display = displayStyle;
+};
+const toggleSearchNumber = (displayStyle) => {
+  document.getElementById("result-found").style.display = displayStyle;
 };
 // Search field event handler
 
@@ -14,8 +18,10 @@ document.getElementById("search-btn").addEventListener("click", () => {
   //toggling spinner on
   toggleSpinner("block");
 
-  // Search Result hidden
+  // Search Result hidden while search starts
   toggleSearchResult("none");
+  //Search Result Number hidden while search starts
+  toggleSearchNumber("none");
 
   //Calling LoadBook function
   loadBooks(searchText);
@@ -115,4 +121,6 @@ const bookDetail = (info) => {
   bookDetailsDiv.appendChild(div);
   // Display Search Result
   toggleSearchResult("flex");
+  //Search Result Number hidden while search starts
+  toggleSearchNumber("block");
 };
