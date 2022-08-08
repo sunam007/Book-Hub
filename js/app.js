@@ -1,12 +1,21 @@
+//Toggle spinner function;
 const toggleSpinner = (displayStyle) => {
   document.getElementById("spinner").style.display = displayStyle;
 };
+const toggleSearchResult = (displayStyle) => {
+  document.getElementById("book-details").style.display = displayStyle;
+};
+// Search field event handler
+
 document.getElementById("search-btn").addEventListener("click", () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
 
   //toggling spinner on
   toggleSpinner("block");
+
+  // Search Result hidden
+  toggleSearchResult("none");
 
   //Calling LoadBook function
   loadBooks(searchText);
@@ -20,6 +29,9 @@ const loadBooks = async (searchText) => {
   // console.log(url);
   const res = await fetch(url);
   const data = await res.json();
+
+  // Toggling spinner off
+  toggleSpinner("none");
 
   const bookDetailsDiv = document.getElementById("book-details");
 
@@ -101,6 +113,6 @@ const bookDetail = (info) => {
   `;
 
   bookDetailsDiv.appendChild(div);
-  // Toggling spinner off
-  toggleSpinner("none");
+  // Display Search Result
+  toggleSearchResult("flex");
 };
