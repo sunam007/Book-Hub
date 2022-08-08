@@ -1,6 +1,14 @@
+const toggleSpinner = (displayStyle) => {
+  document.getElementById("spinner").style.display = displayStyle;
+};
 document.getElementById("search-btn").addEventListener("click", () => {
   const searchField = document.getElementById("search-field");
   const searchText = searchField.value;
+
+  //toggling spinner on
+  toggleSpinner("block");
+
+  //Calling LoadBook function
   loadBooks(searchText);
   searchField.value = "";
 });
@@ -9,11 +17,15 @@ document.getElementById("search-btn").addEventListener("click", () => {
 
 const loadBooks = async (searchText) => {
   const url = `https://openlibrary.org/search.json?q=${searchText}`;
-  console.log(url);
+  // console.log(url);
   const res = await fetch(url);
   const data = await res.json();
+
   const bookDetailsDiv = document.getElementById("book-details");
+
+  // Clearing previous search data;
   bookDetailsDiv.textContent = "";
+
   const resultNumber = document.getElementById("result-found");
 
   if (data.numFound !== 0) {
@@ -89,4 +101,6 @@ const bookDetail = (info) => {
   `;
 
   bookDetailsDiv.appendChild(div);
+  // Toggling spinner off
+  toggleSpinner("none");
 };

@@ -5,3 +5,6 @@ body {
 .w-15 {
   width: 15%;
 }
+#spinner {
+  display: none;
+}
